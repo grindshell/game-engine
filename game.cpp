@@ -6,6 +6,8 @@ and may not be redistributed without written permission.*/
 #include <stdio.h>
 #include <string>
 
+#include "core.h"
+
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -120,6 +122,8 @@ SDL_Surface* loadSurface( std::string path )
 
 int main( int argc, char* args[] )
 {
+	Core gCore;
+
 	//Start up SDL and create window
 	if( !init() )
 	{
@@ -152,6 +156,8 @@ int main( int argc, char* args[] )
 						quit = true;
 					}
 				}
+
+				gCore.run();
 
 				//Apply the image stretched
 				SDL_Rect stretchRect;
