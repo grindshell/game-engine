@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
-#include "core.h"
+#include "game_core.h"
 
-void Core::run () {
+void GameCore::run () {
     running = true;
 
     SDL_Event e;
