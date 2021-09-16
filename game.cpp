@@ -33,6 +33,8 @@ SDL_Surface* gScreenSurface = NULL;
 //Current displayed image
 SDL_Surface* gStretchedSurface = NULL;
 
+Core gCore;
+
 bool init()
 {
 	//Initialization flag
@@ -122,8 +124,6 @@ SDL_Surface* loadSurface( std::string path )
 
 int main( int argc, char* args[] )
 {
-	Core gCore;
-
 	//Start up SDL and create window
 	if( !init() )
 	{
@@ -138,38 +138,8 @@ int main( int argc, char* args[] )
 		}
 		else
 		{	
-			//Main loop flag
-			bool quit = false;
-
-			//Event handler
-			SDL_Event e;
-
-			//While application is running
-			while( !quit )
-			{
-				//Handle events on queue
-				while( SDL_PollEvent( &e ) != 0 )
-				{
-					//User requests quit
-					if( e.type == SDL_QUIT )
-					{
-						quit = true;
-					}
-				}
-
-				gCore.run();
-
-				//Apply the image stretched
-				SDL_Rect stretchRect;
-				stretchRect.x = 0;
-				stretchRect.y = 0;
-				stretchRect.w = SCREEN_WIDTH;
-				stretchRect.h = SCREEN_HEIGHT;
-				SDL_BlitScaled( gStretchedSurface, NULL, gScreenSurface, &stretchRect );
-			
-				//Update the surface
-				SDL_UpdateWindowSurface( gWindow );
-			}
+			gCore.run();
+			SDL_UpdateWindowSurface( gWindow );
 		}
 	}
 
