@@ -12,9 +12,9 @@ const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
 bool GraphicsManager::startUp () {
-	GraphicsManager::initializeSDL();
-	GraphicsManager::createWindow();
-	GraphicsManager::loadAssets();
+	this->initializeSDL();
+	this->createWindow();
+	this->loadAssets();
 
 	return true;
 }
