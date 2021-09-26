@@ -11,6 +11,5 @@ private:
 	bool initializeSDL();
 	bool loadAssets();
 	bool createWindow();
-	SDL_Surface* loadSurface( std::string path );
 };
 #endif

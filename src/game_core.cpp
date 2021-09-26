@@ -2,6 +2,7 @@
 #include <SDL2/SDL.h>
 
 #include "game_core.h"
+#include "graphics_manager.h"
 
 void GameCore::run () {
     running = true;
