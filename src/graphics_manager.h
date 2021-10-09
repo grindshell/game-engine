@@ -9,7 +9,6 @@ public:
 	bool render();
 private:
 	bool initializeSDL();
-	bool loadAssets();
 	bool createWindow();
 };
 #endif

@@ -5,9 +5,6 @@
 
 #include "graphics_manager.h"
 
-//Loads individual image as texture
-SDL_Texture* loadTexture( std::string path );
-
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
 
@@ -23,7 +20,6 @@ const int SCREEN_HEIGHT = 480;
 bool GraphicsManager::startUp () {
 	this->initializeSDL();
 	this->createWindow();
-	this->loadAssets();
 	this->render();
 
 	return true;
@@ -120,50 +116,7 @@ bool GraphicsManager::render() {
 	//Update screen
 	SDL_RenderPresent( gRenderer );
 
-    printf("render");
-
 	return true;
-}
-
-bool GraphicsManager::loadAssets() {
-    bool success = true;
-
-    //Load PNG texture
-    // gTexture = loadTexture( "texture.png" );
-    // if( gTexture == NULL )
-    // {
-    //     printf( "Failed to load texture image!\n" );
-    //     success = false;
-    // }
-
-	return success;
-}
-
-SDL_Texture* loadTexture( std::string path )
-{
-	//The final texture
-	SDL_Texture* newTexture = NULL;
-
-	//Load image at specified path
-	SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
-	if( loadedSurface == NULL )
-	{
-		printf( "Unable to load image %s! SDL_image Error: %s\n", path.c_str(), IMG_GetError() );
-	}
-	else
-	{
-		//Create texture from surface pixels
-        newTexture = SDL_CreateTextureFromSurface( gRenderer, loadedSurface );
-		if( newTexture == NULL )
-		{
-			printf( "Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError() );
-		}
-
-		//Get rid of old loaded surface
-		SDL_FreeSurface( loadedSurface );
-	}
-
-	return newTexture;
 }
 
 void GraphicsManager::shutDown()
