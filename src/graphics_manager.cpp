@@ -5,6 +5,9 @@
 
 #include "graphics_manager.h"
 
+//Loads individual image as texture
+SDL_Texture* loadTexture( std::string path );
+
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
 
@@ -80,38 +83,29 @@ bool GraphicsManager::createWindow() {
 }
 
 bool GraphicsManager::render() {
-	// From rendering png:
-	//Clear screen
-    // SDL_RenderClear( gRenderer );
-    //Render texture to screen
-    // SDL_RenderCopy( gRenderer, gTexture, NULL, NULL );
-    //Update screen
-    // SDL_RenderPresent( gRenderer );
-
 	//Clear screen
 	SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
 	SDL_RenderClear( gRenderer );
 
-	//Render red filled quad
-	SDL_Rect fillRect = { SCREEN_WIDTH / 4, SCREEN_HEIGHT / 4, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
-	SDL_SetRenderDrawColor( gRenderer, 0xFF, 0x00, 0x00, 0xFF );		
-	SDL_RenderFillRect( gRenderer, &fillRect );
+	SDL_SetRenderDrawColor( gRenderer, 0x00, 0xFF, 0x00, 0x00 );		
 
-	//Render green outlined quad
-	SDL_Rect outlineRect = { SCREEN_WIDTH / 6, SCREEN_HEIGHT / 6, SCREEN_WIDTH * 2 / 3, SCREEN_HEIGHT * 2 / 3 };
-	SDL_SetRenderDrawColor( gRenderer, 0x00, 0xFF, 0x00, 0xFF );		
-	SDL_RenderDrawRect( gRenderer, &outlineRect );
-	
-	//Draw blue horizontal line
-	SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0xFF, 0xFF );		
-	SDL_RenderDrawLine( gRenderer, 0, SCREEN_HEIGHT / 2, SCREEN_WIDTH, SCREEN_HEIGHT / 2 );
+	// 0, 0 is top left
+	SDL_Rect leftPaddle = {
+		0, // X
+		0, // Y
+		SCREEN_WIDTH / 32, // width
+		SCREEN_HEIGHT / 4 // height
+	};
 
-	//Draw vertical line of yellow dots
-	SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0x00, 0xFF );
-	for( int i = 0; i < SCREEN_HEIGHT; i += 4 )
-	{
-		SDL_RenderDrawPoint( gRenderer, SCREEN_WIDTH / 2, i );
-	}
+	SDL_Rect rightPaddle = {
+		SCREEN_WIDTH - (SCREEN_WIDTH / 32),
+		0,
+		SCREEN_WIDTH / 32,
+		SCREEN_HEIGHT / 4
+	};
+
+	SDL_RenderFillRect( gRenderer, &leftPaddle );
+	SDL_RenderFillRect( gRenderer, &rightPaddle );
 
 	//Update screen
 	SDL_RenderPresent( gRenderer );
