@@ -1,10 +1,17 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
+#include "actor.h"
 #include "game_core.h"
 #include "graphics_manager.h"
 
-void GameCore::run () {
+void GameCore::setActors(std::list<Actor> actors)
+{
+	this->actors = actors;
+}
+
+void GameCore::run ()
+{
     running = true;
 
     SDL_Event e;
@@ -19,4 +26,3 @@ void GameCore::run () {
 		}
     }
 }
-
