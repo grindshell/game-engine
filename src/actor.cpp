@@ -10,10 +10,10 @@ std::string Actor::to_string()
 
 Actor::Actor(int x, int y)
 {
-	this->set_xy(x, y);
+	this->set_pos(x, y);
 }
 
-void Actor::set_xy(int x, int y)
+void Actor::set_pos(int x, int y)
 {
 	this->x = x;
 	this->y = y;

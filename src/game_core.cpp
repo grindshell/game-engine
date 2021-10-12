@@ -19,12 +19,12 @@ void GameCore::run ()
 	std::list<Actor>::iterator ait;
 
     while(running) {
+		for (ait = actors.begin(); ait != actors.end(); ++ait){
+			std::cout << ait->to_string() << "\n" << std::flush;
+		}
+
 		while( SDL_PollEvent( &e ) != 0 )
 		{
-			for (ait = actors.begin(); ait != actors.end(); ++ait){
-				std::cout << ait->to_string() << "\n" << std::flush;
-			}
-
 			if( e.type == SDL_QUIT )
 			{
 				running = false;

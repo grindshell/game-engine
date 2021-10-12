@@ -6,7 +6,7 @@ class Actor {
 public:
     Actor(int x, int y);
 
-    void set_xy(int x, int y);
+    void set_pos(int x, int y);
     std::string to_string();
 };
 #endif
